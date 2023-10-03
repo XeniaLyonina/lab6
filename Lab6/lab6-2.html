@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xenia Lyonina</title>
+</head>
+<body>
+<script>
+    function SoundCard (analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface) {
+        this.analog_outputs = analog_outputs;
+        this.analog_inputs = analog_inputs;
+        this.microphone_inputs = microphone_inputs;
+        this.type=type;
+        this.number_of_channels=number_of_channels;
+        this.connection_interface=connection_interface;
+        this.show = function () {
+            console.log(`
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+    Object.defineProperties(SoundCard.prototype, {
+        "getInfo": {
+            get () {
+                return `${this.analog_outputs}, ${this.analog_inputs},${this.microphone_inputs},${this.type},${this.number_of_channels},${this.connection_interface}  `
+            },
+            set (value) {
+                [this.analog_outputs, this.analog_inputs, this.microphone_inputs,this.type,this.number_of_channels,this.connection_interface ] = value.split(" ");
+            }
+        }
+    })
+
+    SoundCard.prototype.releaseDate = "00/00/0000";
+    SoundCard.prototype.showInfo = function () {
+        console.log(`Информация о карте:
+            analog_outputs:${this.analog_outputs}
+            analog_inputs: ${this.analog_inputs}
+            microphone_inputs:${this.microphone_inputs}
+            type:${this.type}
+            number_of_channels:${this.number_of_channels}
+            connection_interface:${this.connection_interface}
+        `)
+    }
+
+    let a = new SoundCard ("Мониторный выход", "Линейный вход", "нет", "внешняя", 8, "PCI");
+</script>
+</body>
+</html>

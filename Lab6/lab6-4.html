@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyonina Xenia</title>
+</head>
+<body>
+<script>
+    class SoundCard {
+        constructor(analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface) {
+            this.analog_outputs = analog_outputs;
+            this.analog_inputs = analog_inputs;
+            this.microphone_inputs = microphone_inputs;
+            this.type=type;
+            this.number_of_channels=number_of_channels;
+            this.connection_interface=connection_interface;
+        }
+
+        get getInfo() {
+            return `${this.analog_outputs}, ${this.analog_inputs},${this.microphone_inputs},${this.type},${this.number_of_channels},${this.connection_interface}`
+        }
+        set getInfo(value) {
+            [this.analog_outputs, this.analog_inputs, this.microphone_inputs,this.type,this.number_of_channels,this.connection_interface] = value.split(" ");
+        }
+        showInfo() {
+            console.log(`
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+
+    class ReleaseInfoSoundCard extends SoundCard {
+        constructor (price, date, analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface) {
+            super(analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface);
+            this.price = price;
+            this.releaseDate = date;
+        }
+
+        showInfo() {
+            console.log(`
+            Обновленная информация
+                Цена: ${this.price}
+                Дата релиза: ${this.releaseDate}
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+
+    const a = new ReleaseInfoSoundCard("03/10/2023", 10200, "Мониторный выход", "Линейный вход", "нет", "внешняя", 8, "PCI");
+    a.showInfo()
+</script>
+</body>
+</html>

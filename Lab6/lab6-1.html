@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyonina Xenia</title>
+</head>
+<body>
+<script>
+    const SoundCard = {
+        analog_outputs: "Мониторный выход",
+        analog_inputs: "Линейный вход",
+        microphone_inputs: "нет",
+        type:"внешняя",
+        number_of_channels:8,
+        connection_interface:"PCI",
+        show: function () {
+            console.log(`
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+</script>
+</body>
+</html>

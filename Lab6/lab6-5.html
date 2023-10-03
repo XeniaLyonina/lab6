@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xenia Lyonina</title>
+</head>
+<body>
+<script>
+    class SoundCard{
+        constructor(analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface) {
+            this.analog_outputs = analog_outputs;
+            this.analog_inputs = analog_inputs;
+            this.microphone_inputs = microphone_inputs;
+            this.type=type;
+            this.number_of_channels=number_of_channels;
+            this.connection_interface=connection_interface;
+        }
+
+        get getInfo() {
+            return `${this.analog_outputs}, ${this.analog_inputs},${this.microphone_inputs},${this.type},${this.number_of_channels},${this.connection_interface}`
+        }
+        set getInfo(value) {
+            [this.analog_outputs, this.analog_inputs, this.microphone_inputs,this.type,this.number_of_channels,this.connection_interface] = value.split(" ");
+        }
+        showInfo() {
+            console.log(`
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+    class ReleaseInfoSoundCard extends SoundCard {
+        constructor (price, date, analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface) {
+            super(analog_outputs, analog_inputs, microphone_inputs, type, number_of_channels, connection_interface);
+            this.price = price;
+            this.releaseDate = date;
+        }
+
+        showInfo() {
+            console.log(`
+            Обновленная информация
+                Цена: ${this.price}
+                Дата релиза: ${this.releaseDate}
+                Аналоговые выходы: ${this.analog_outputs}
+                Аналоговые входы ${this.analog_inputs}
+                Микрофонные входы: ${this.microphone_inputs}
+                Тип: ${this.type}
+                Количество каналов ${this.number_of_channels}
+                Интерфейс подключения ${this.connection_interface}
+            `)
+        }
+    }
+
+    const CardArray = [];
+
+    CardArray.push(new ReleaseInfoSoundCar( 10200,"00/00/0000", "Мониторный выход", "Линейный вход", "да", "внешняя", 8, "PCI"));
+    CardArray.push(new ReleaseInfoSoundCar( 7800, "11/11/1111", "Мониторный выход", "Линейный вход", "нет", "внешняя", 4, "PCI"));
+    CardArray.push(new ReleaseInfoSoundCar( 8000,"22/22/2222", "Мониторный выход", "Линейный вход", "нет", "внешняя", 8, "PCI"));
+    CardArray.push(new ReleaseInfoSoundCar( 14000,"33/33/3333", "Мониторный выход", "Линейный вход", "да", "внешняя", 16, "PCI"));
+    CardArray.push(new ReleaseInfoSoundCar( 9600, "44/44/4444", "Мониторный выход", "Линейный вход", "нет", "внешняя", 8, "PCI"));
+    CardArray.push(new ReleaseInfoSoundCar( 6400,"55/55/5555",  "Мониторный выход", "Линейный вход", "нет", "внешняя", 4, "PCI"));
+
+    let expensiveCard = CardArray[0];
+    let cheapCard = CardArray[0];
+    let totalSum = CardArray.reduce((accumulator, value) => accumulator += value.price, 0);
+    let averageSum = totalSum / CardtArray.length;
+
+    CardArray.forEach(Card => {
+        if (expensiveCard.price < Card.price) {
+            expensiveCard = Card;
+        }
+        if (cheapCard.price > Card.price) {
+            cheapCard = Card;
+        }
+    })
+
+    console.log('Дешевая карта: ', cheapCard);
+    console.log('Дорогая карта: ', expensiveCard);
+    console.log('Итоговая сумма: ', totalSum);
+    console.log('Средняя сумма: ', averageSum);
+    console.log('Количество объектов состоимостью выше средней: ', CardArray.filter(Card => Card.price > averageSum).length)
+</script>
+</body>
+</html>
